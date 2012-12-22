@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["howard@metacircus.com"]
   gem.description   = %q{CommandT finder as standalone gem}
   gem.summary       = %q{ditto}
-  gem.homepage      = "http://github.com/hayeah"
+  gem.homepage      = "https://github.com/hayeah/command-t-standalone"
 
   gem.files         = `git ls-files`.split($/)
   # gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
