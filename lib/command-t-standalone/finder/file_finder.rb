@@ -21,34 +21,19 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-require 'command-t/ext'
+require 'command-t-standalone/ext' # CommandT::Matcher
+require 'command-t-standalone/finder'
+require 'command-t-standalone/scanner/file_scanner'
 
 module CommandT
-  # Encapsulates a Scanner instance (which builds up a list of available files
-  # in a directory) and a Matcher instance (which selects from that list based
-  # on a search string).
-  #
-  # Specialized subclasses use different kinds of scanners adapted for
-  # different kinds of search (files, buffers).
-  class Finder
-    # include VIM::PathUtilities
-
+  class FileFinder < Finder
     def initialize path = Dir.pwd, options = {}
-      raise RuntimeError, 'Subclass responsibility'
+      @scanner = FileScanner.new path, options
+      @matcher = Matcher.new @scanner, options
     end
 
-    # Options:
-    #   :limit (integer): limit the number of returned matches
-    def sorted_matches_for str, options = {}
-      @matcher.sorted_matches_for str, options
+    def flush
+      @scanner.flush
     end
-
-    # def open_selection command, selection, options = {}
-    #   ::VIM::command "silent #{command} #{selection}"
-    # end
-
-    def path= path
-      @scanner.path = path
-    end
-  end # class Finder
+  end # class FileFinder
 end # CommandT

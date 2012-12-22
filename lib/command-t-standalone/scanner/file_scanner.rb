@@ -22,7 +22,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 # require 'command-t/vim'
-require 'command-t/scanner'
+require 'command-t-standalone/scanner'
 
 module CommandT
   # Reads the current directory recursively for the paths to all regular files.
