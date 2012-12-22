@@ -1,29 +1,20 @@
 # Command::T::Standalone
 
-TODO: Write a gem description
+This is extracted from Vim's [cmd-t plugin](https://github.com/wincent/Command-T).
 
-## Installation
+It provides cmd-t's file finding algorithm, which can be used to implement similar plugin in The Other Editor.
 
-Add this line to your application's Gemfile:
+# Install
 
-    gem 'command-t-standalone'
+gem install command-t-standalone
 
-And then execute:
+# Example
 
-    $ bundle
+    require "command-t-standalone"
 
-Or install it yourself as:
+    finder = CommandT::FileFinder.new
+    finder.sorted_matches_for "rb"
+    # => ["lib/command-t-standalone.rb", "lib/command-t-standalone/finder.rb", "lib/command-t-standalone/extconf.rb", "lib/command-t-standalone/scanner.rb", "lib/command-t-standalone/version.rb", "lib/command-t-standalone/match_window.rb", "lib/command-t-standalone/finder/file_finder.rb", "lib/command-t-standalone/scanner/file_scanner.rb", "lib/command-t-standalone/ruby_compat.h"]
 
-    $ gem install command-t-standalone
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    finder.sorted_matches_for ".h"
+    # => ["lib/command-t-standalone/ext.h", "lib/command-t-standalone/match.h", "lib/command-t-standalone/matcher.h", "lib/command-t-standalone/ruby_compat.h"]
